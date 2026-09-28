@@ -1,6 +1,6 @@
 # Obesity Risk Intelligence System
 
-## IT3051 Fundamentals of Data Mining - Group Project
+## IT3051 Fundamentals of Data Mining - Group Project Plan
 
 This repository contains the planned structure and coordination guide for a four-member data-mining project. The project will develop an educational system that classifies obesity-risk categories from demographic, physical, eating-habit, and lifestyle information.
 
