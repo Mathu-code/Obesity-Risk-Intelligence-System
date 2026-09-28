@@ -1,0 +1,48 @@
+{
+  "project": "Obesity Risk Intelligence System",
+  "model": "Random Forest - Tuned",
+  "selection_metric": "Macro F1",
+  "best_hyperparameters": {
+    "classifier__n_estimators": 150,
+    "classifier__min_samples_split": 10,
+    "classifier__min_samples_leaf": 2,
+    "classifier__max_features": 0.5,
+    "classifier__max_depth": 20,
+    "classifier__class_weight": null
+  },
+  "validation_metrics": {
+    "Accuracy": 0.9049454078355812,
+    "Balanced Accuracy": 0.8955905442862135,
+    "Macro F1": 0.8956219303904118,
+    "Weighted F1": 0.9046774689689945
+  },
+  "final_test_metrics": {
+    "Accuracy": 0.9023763648041104,
+    "Balanced Accuracy": 0.8923796875105682,
+    "Macro F1": 0.8916633273935437,
+    "Weighted F1": 0.9019504319824174
+  },
+  "dataset": {
+    "training_samples": 14530,
+    "validation_samples": 3114,
+    "development_samples": 17644,
+    "test_samples": 3114,
+    "raw_features": 16,
+    "transformed_features": 25,
+    "classes": [
+      "Insufficient_Weight",
+      "Normal_Weight",
+      "Obesity_Type_I",
+      "Obesity_Type_II",
+      "Obesity_Type_III",
+      "Overweight_Level_I",
+      "Overweight_Level_II"
+    ]
+  },
+  "reproducibility": {
+    "random_seed": 42,
+    "cross_validation_folds": 5,
+    "tuning_candidates": 20,
+    "sklearn_version": "1.9.1"
+  }
+}
