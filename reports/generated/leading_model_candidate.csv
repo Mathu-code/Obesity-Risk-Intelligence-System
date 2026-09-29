@@ -1,0 +1,2 @@
+Model,Accuracy,Balanced Accuracy,Macro F1,Weighted F1
+Random Forest - Tuned,0.9049454078355812,0.8955905442862135,0.8956219303904118,0.9046774689689945
