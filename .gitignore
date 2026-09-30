@@ -3,13 +3,20 @@ __pycache__/
 *.pyc
 *.pyo
 .DS_Store
+
 data/metrics.db
 data/report_*.md
+
 chroma_db/
 .chroma/
+
 venv/
 .venv/
+
 *.egg-info/
 dist/
 build/
 .pytest_cache/
+
+# Ignore runtime database files
+database/*.db
