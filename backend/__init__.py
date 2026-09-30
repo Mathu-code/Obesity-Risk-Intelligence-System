@@ -1,0 +1,77 @@
+from flask import Flask
+
+from backend.database import (
+    DEFAULT_DATABASE_PATH,
+    init_app as init_database_app,
+)
+from backend.error_handlers import (
+    register_error_handlers,
+)
+from backend.routes.health import (
+    health_bp,
+)
+from backend.routes.history import (
+    history_bp,
+)
+from backend.routes.model_info import (
+    model_info_bp,
+)
+from backend.routes.prediction import (
+    prediction_bp,
+)
+from backend.services.model_service import (
+    ModelService,
+)
+
+
+def create_app(
+    test_config=None,
+):
+    app = Flask(
+        __name__
+    )
+
+    app.config.from_mapping(
+        DATABASE=str(
+            DEFAULT_DATABASE_PATH
+        )
+    )
+
+    if test_config is not None:
+        app.config.update(
+            test_config
+        )
+
+    model_service = (
+        ModelService()
+    )
+
+    app.extensions[
+        "obesity_risk_model"
+    ] = model_service
+
+    app.register_blueprint(
+        health_bp
+    )
+
+    app.register_blueprint(
+        model_info_bp
+    )
+
+    app.register_blueprint(
+        prediction_bp
+    )
+
+    app.register_blueprint(
+        history_bp
+    )
+
+    register_error_handlers(
+        app
+    )
+
+    init_database_app(
+        app
+    )
+
+    return app
