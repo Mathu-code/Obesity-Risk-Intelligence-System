@@ -1,220 +1,432 @@
 # Obesity Risk Intelligence System
 
-## IT3051 Fundamentals of Data Mining - Group Project Plan
+## Overview
 
-This repository contains the planned structure and coordination guide for a four-member data-mining project. The project will develop an educational system that classifies obesity-risk categories from demographic, physical, eating-habit, and lifestyle information.
+The **Obesity Risk Intelligence System** is a machine learning-based application that predicts obesity risk categories using health and lifestyle-related information.
 
-> This project is for educational and research purposes. Predictions are dataset classifications, not medical diagnoses or treatment recommendations.
+The system integrates:
 
-## Project Status
+- Machine Learning prediction pipeline
+- Flask REST API backend
+- Streamlit interactive frontend
+- SQLite database for prediction history
+- SHAP-based Explainable AI for model interpretation
 
-The repository is currently at the setup and planning stage. The dataset must be validated by the instructor before the team performs EDA, preprocessing, model training, or system development.
+The application predicts one of seven obesity risk categories:
 
-Completed in this setup:
+- Insufficient Weight
+- Normal Weight
+- Obesity Type I
+- Obesity Type II
+- Obesity Type III
+- Overweight Level I
+- Overweight Level II
 
-- Main repository structure.
-- Four equal member branches.
-- Dataset proposal details.
-- Full-project responsibility plan.
-- Evaluation 1 workflow and checklist.
 
-Not started yet:
+---
 
-- Dataset download and verification.
-- EDA notebooks.
-- Preprocessing and feature engineering.
-- Model training or tuning.
-- Backend and frontend implementation.
-- Final report and presentation materials.
+# System Architecture
 
-## Dataset
+```
+Streamlit Frontend
+        |
+        |
+        v
+Flask REST API Backend
+        |
+        |
+        v
+Machine Learning Model
+        |
+        |
+        v
+SQLite Database
+```
 
-The proposed dataset is the Kaggle Playground Series Season 4 Episode 2 obesity-risk dataset.
+---
 
-- **Dataset URL:** <https://www.kaggle.com/competitions/playground-series-s4e2/data>
-- **Task:** Seven-class multi-class classification.
-- **Target:** `NObeyesdad`.
-- **Expected training records:** 20,758.
-- **Expected columns:** 18, including `id`, 16 predictive features, and `NObeyesdad`.
+# Project Structure
 
-Expected numerical features:
-
-`Age`, `Height`, `Weight`, `FCVC`, `NCP`, `CH2O`, `FAF`, `TUE`
-
-Expected categorical features:
-
-`Gender`, `family_history_with_overweight`, `FAVC`, `CAEC`, `SMOKE`, `SCC`, `CALC`, `MTRANS`
-
-The team must verify the actual row count, columns, data types, missing values, duplicates, invalid values, and target distribution after instructor approval. The identifier `id` will normally be excluded from predictive modelling because it identifies records rather than describing the subject.
-
-The team must record the dataset version, download date, source, citation, license, and instructor validation evidence. Raw data and Kaggle credentials must not be committed to Git.
-
-## Main Branch Structure
-
-```text
+```
 Obesity-Risk-Intelligence-System/
-├── backend/                 # Later: prediction API/service
-├── data/
-│   ├── raw/                 # Local source dataset; not committed
-│   ├── interim/             # Temporary transformed data
-│   └── processed/           # Approved processed data
-├── docs/                    # Setup plan, decisions, evidence, and report material
-├── frontend/                # Later: user-facing prediction interface
-├── models/                  # Later: trained model and metadata
-├── notebooks/               # Ordered analysis notebooks
-├── reports/                 # Figures, results, and report assets
-├── src/                     # Reusable data and machine-learning code
-├── tests/                   # Unit and integration tests
-├── .gitignore
-├── LICENSE
+
+├── backend/
+│   ├── routes/
+│   ├── services/
+│   ├── repositories/
+│   ├── database.py
+│   ├── production.py
+│   └── run_production.py
+│
+├── frontend/
+│   ├── components/
+│   ├── services/
+│   ├── app.py
+│   ├── styles.py
+│   └── config.py
+│
+├── models/
+│   ├── obesity_risk_pipeline.joblib
+│   └── model_metadata.json
+│
+├── database/
+│   └── schema.sql
+│
+├── notebooks/
+│
+├── reports/
+│
+├── .streamlit/
+│   └── config.toml
+│
+├── requirements.txt
 └── README.md
 ```
 
-The detailed coordination document is [docs/PROJECT_SETUP.md](docs/PROJECT_SETUP.md).
+---
 
-## Equal Member Branches
+# Technologies Used
 
-All four branches represent equal full-project contributors. The lead descriptions below identify who prepares the first draft or coordinates a stage; they do not limit the other members' responsibilities.
+## Machine Learning
 
-| Branch | Member | Coordination lead |
-|---|---|---|
-| `member-1` | Member 1 | Problem definition, dataset proposal, and later model comparison |
-| `member-2` | Member 2 | Data understanding, EDA, and later model tuning |
-| `member-3` | Member 3 | Preprocessing, feature engineering, and later backend work |
-| `member-4` | Member 4 | Integration, evidence, frontend, and testing |
+- Python
+- Pandas
+- NumPy
+- Scikit-learn
+- SHAP
+- Joblib
 
-Every member must contribute to every project stage, review other members' work, participate in testing, contribute to the report and presentation, and understand the complete project for individual evaluation.
 
-## Full Project Workflow
+## Backend
 
-### Stage 1: Problem understanding
+- Flask
+- Waitress
+- SQLite
 
-- Define the real-world obesity-risk classification scenario.
-- Define the prediction objective and `NObeyesdad` target.
-- Identify users, stakeholders, decisions, inputs, and outputs.
-- Document the educational and non-clinical scope of the system.
 
-### Stage 2: Dataset identification and validation
+## Frontend
 
-- Prepare the dataset proposal with source, URL, citation, context, dimensions, features, target, task type, suitability, quality observations, limitations, ethics, privacy, licensing, and accessibility considerations.
-- Obtain instructor validation before continuing.
-- Keep rejected or unverified dataset decisions documented.
+- Streamlit
+- Python Requests
 
-### Stage 3: Data understanding and EDA
 
-- Inspect structure, variable meanings, types, distributions, and relationships.
-- Check missing values, duplicates, identifiers, invalid values, outliers, and unusual observations.
-- Examine class balance and create relevant visualisations.
-- Identify leakage risks and record observations that affect preprocessing.
+---
 
-### Stage 4: Preprocessing and feature engineering
+# Installation
 
-- Handle missing, duplicate, invalid, and justified outlier cases.
-- Encode categorical variables and scale numerical variables when required.
-- Decide how `id` is handled.
-- Engineer or select features only when supported by evidence.
-- Separate training and test data correctly and fit transformations only on training data.
+## 1. Clone Repository
 
-### Stage 5: Progress Evaluation 1
+```bash
+git clone <repository-url>
 
-Each member must be able to explain the scenario, dataset, EDA findings, data-quality issues, preprocessing decisions, feature engineering, leakage prevention, and personal contribution.
+cd Obesity-Risk-Intelligence-System
+```
 
-### Stage 6: Model development
+---
 
-- Implement and compare at least four suitable machine-learning algorithms.
-- Use an appropriate validation strategy and classification metrics.
-- Record experiments, results, assumptions, and observations.
+## 2. Create Virtual Environment
 
-### Stage 7: Model optimization
+Windows:
 
-- Tune suitable models using a documented search strategy.
-- Compare tuned models with baselines.
-- Investigate feature and modelling improvements.
-- Select and justify the final model.
+```powershell
+python -m venv .venv
+```
 
-### Stage 8: Progress Evaluation 2
+Activate environment:
 
-Each member must explain algorithm selection, validation, metrics, tuning, model comparison, interpretation, final selection, and personal contribution.
+```powershell
+.venv\Scripts\activate
+```
 
-### Stage 9: Backend development
+---
 
-- Load the final model and preprocessing pipeline.
-- Validate inputs and return meaningful predictions.
-- Apply exactly the preprocessing used during training.
-- Handle missing and invalid input safely.
+## 3. Install Dependencies
 
-### Stage 10: Frontend and user experience
+```powershell
+pip install -r requirements.txt
+```
 
-- Provide clear input controls and validation.
-- Display the prediction and supporting result information clearly.
-- Connect frontend and backend into a complete workflow.
-- Keep the interface understandable for non-technical users.
+---
 
-### Stage 11: Technical report
+# Running the Application
 
-The report must cover the problem, stakeholders, dataset and validation, EDA, cleaning, preprocessing, feature engineering, algorithms, evaluation, tuning, final model, architecture, implementation, testing, limitations, future work, and individual/group contributions.
+The application requires the backend API and frontend application to run separately.
 
-### Stage 12: Final presentation and demonstration
+---
 
-Present the business problem, solution, findings, predictions, decision support, evidence-based recommendations, and working system in language suitable for non-technical stakeholders. Every member must present and answer questions.
+# Backend Setup
 
-## Full-Project Responsibility Rotation
+Open a terminal inside the project root.
 
-| Stage | First-draft or coordination lead | Other members |
-|---|---|---|
-| Problem and dataset validation | Member 1 | Review and contribute scenario, source, suitability, ethics, and approval evidence |
-| EDA and data understanding | Member 2 | Reproduce checks, review findings, and challenge leakage/class-balance conclusions |
-| Preprocessing and feature engineering | Member 3 | Review transformations, split strategy, leakage controls, and reproducibility |
-| Integration and Evaluation 1 evidence | Member 4 | Supply technical evidence, review the checklist, and rehearse the viva |
-| Four-model comparison | Member 1 | Each member owns or implements at least one model experiment |
-| Hyperparameter tuning and final selection | Member 2 | Review search strategy, metrics, experiment logs, and selection reasoning |
-| Backend and input validation | Member 3 | Test API behavior, preprocessing consistency, errors, and predictions |
-| Frontend and end-to-end testing | Member 4 | Test the complete workflow and provide usability and accessibility feedback |
-| Report and final presentation | Shared | Every member writes, reviews, presents, and explains the complete project |
+Activate the virtual environment:
 
-For each stage, record the lead, reviewers, files changed, evidence produced, and individual contributions. No stage belongs exclusively to one member.
+```powershell
+.venv\Scripts\activate
+```
 
-## Git Workflow
+Start the backend server:
 
-1. Create each member branch from the latest `main`.
-2. Work only on the branch assigned to that member.
-3. Use clear commits such as `docs: add dataset proposal` or `eda: inspect target distribution`.
-4. Open a pull request into `main` for every completed contribution.
-5. Obtain at least one review before merging.
-6. Keep `main` stable and merge only reviewed work.
-7. Do not merge work that the author cannot explain in an individual evaluation.
+```powershell
+python -m backend.run_production
+```
 
-## Evaluation 1 Checklist
+The backend will run on:
 
-- [ ] Problem scenario and prediction objective are clear.
-- [ ] Target variable and classification task are explained.
-- [ ] Stakeholders, user requirements, inputs, and outputs are documented.
-- [ ] Dataset source, URL, citation, context, dimensions, and feature groups are documented.
-- [ ] Instructor validation is recorded before EDA or preprocessing work.
-- [ ] Data types, missing values, duplicates, invalid values, outliers, and class balance are investigated.
-- [ ] Leakage risks and prevention are documented.
-- [ ] Preprocessing and feature-engineering decisions are justified by evidence.
-- [ ] Test-set information is not used to fit preprocessing.
-- [ ] Every member can explain the whole project and their own contribution.
+```
+http://127.0.0.1:5000
+```
 
-## Team Register
+---
 
-Complete this table when the team is finalized.
+## Backend API Testing
 
-| Member | Name / student ID | Branch | Lead area | Backup/review area |
-|---|---|---|---|---|
-| 1 | To complete | `member-1` | Problem and dataset | Models and documentation |
-| 2 | To complete | `member-2` | EDA and data understanding | Dataset and preprocessing |
-| 3 | To complete | `member-3` | Preprocessing | EDA and backend |
-| 4 | To complete | `member-4` | Integration and evidence | Models and frontend |
+### Health Check
 
-## Citation Placeholder
+Request:
 
-Verify the author, year, and license shown on the live Kaggle page before final submission:
+```
+GET /health
+```
 
-> Kaggle. (2024). *Playground Series Season 4, Episode 2: Obesity Risk Prediction*. Kaggle. <https://www.kaggle.com/competitions/playground-series-s4e2/data>
+Example:
 
-## Related Documentation
+```powershell
+curl.exe http://127.0.0.1:5000/health
+```
 
-- [Full project setup and branch guide](docs/PROJECT_SETUP.md)
-- [IT3051 assignment source document](docs/PROJECT_SETUP.md#7-it3051-workflow-boundary)
+Response:
+
+```json
+{
+    "service": "obesity-risk-api",
+    "status": "ok"
+}
+```
+
+---
+
+### Model Information
+
+Request:
+
+```
+GET /model-info
+```
+
+Example:
+
+```powershell
+curl.exe http://127.0.0.1:5000/model-info
+```
+
+This returns:
+
+- Selected model
+- Model performance metrics
+- Feature information
+- Target classes
+
+---
+
+### Prediction API
+
+Request:
+
+```
+POST /predict
+```
+
+Example input:
+
+```json
+{
+    "Age":25,
+    "Height":1.75,
+    "Weight":85,
+    "FCVC":2,
+    "NCP":3,
+    "CH2O":2,
+    "FAF":1,
+    "TUE":1,
+    "CAEC":"Sometimes",
+    "CALC":"Sometimes",
+    "Gender":"Male",
+    "family_history_with_overweight":"yes",
+    "FAVC":"yes",
+    "SMOKE":"no",
+    "SCC":"no",
+    "MTRANS":"Public_Transportation"
+}
+```
+
+The API returns:
+
+- Predicted obesity category
+- Confidence score
+- Class probabilities
+- Prediction ID
+
+---
+
+# Frontend Setup
+
+Open another terminal.
+
+Activate the virtual environment:
+
+```powershell
+.venv\Scripts\activate
+```
+
+Run Streamlit:
+
+```powershell
+python -m streamlit run frontend/app.py
+```
+
+The frontend will open at:
+
+```
+http://localhost:8501
+```
+
+---
+
+# Machine Learning Model
+
+The final selected model:
+
+```
+Gradient Boosting - Tuned
+```
+
+Model files:
+
+```
+models/
+
+├── obesity_risk_pipeline.joblib
+└── model_metadata.json
+```
+
+The metadata file contains:
+
+- Model configuration
+- Feature information
+- Evaluation metrics
+- Target classes
+
+---
+
+# Model Performance
+
+Final model evaluation:
+
+```
+Accuracy:
+90.75%
+
+Macro F1 Score:
+89.73%
+```
+
+---
+
+# Explainable AI
+
+The system includes explainability features using SHAP.
+
+Generated explanations include:
+
+- Global feature importance
+- Local prediction explanation
+- Feature contribution analysis
+
+Reports are generated inside:
+
+```
+reports/generated/
+```
+
+---
+
+# Database
+
+The application uses SQLite for storing prediction information.
+
+Database schema:
+
+```
+database/schema.sql
+```
+
+The database supports:
+
+- Prediction storage
+- Prediction history
+- Report generation
+
+
+---
+
+# Streamlit Configuration
+
+The Streamlit appearance and theme are configured using:
+
+```
+.streamlit/config.toml
+```
+
+---
+
+# Environment Configuration
+
+Required dependencies are listed in:
+
+```
+requirements.txt
+```
+
+Install them using:
+
+```powershell
+pip install -r requirements.txt
+```
+
+---
+
+# Application Flow
+
+```
+User Input
+    |
+    v
+Streamlit Frontend
+    |
+    v
+Flask Prediction API
+    |
+    v
+Machine Learning Pipeline
+    |
+    v
+Prediction Result
+    |
+    v
+Database Storage
+    |
+    v
+Explanation & Report Generation
+```
+
+---
+
+# Future Improvements
+
+Possible future enhancements:
+
+- User authentication
+- Cloud deployment
+- Advanced monitoring dashboard
+- Additional machine learning models
+- Improved analytics features
