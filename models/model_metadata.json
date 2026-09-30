@@ -1,0 +1,69 @@
+{
+  "project": "Obesity Risk Intelligence System",
+  "selected_candidate": "Gradient Boosting - Tuned",
+  "model_family": "Gradient Boosting",
+  "configuration": {
+    "classifier__subsample": 0.8,
+    "classifier__n_estimators": 100,
+    "classifier__min_samples_split": 5,
+    "classifier__min_samples_leaf": 2,
+    "classifier__max_features": 0.8,
+    "classifier__max_depth": 3,
+    "classifier__learning_rate": 0.15
+  },
+  "predictive_features": [
+    "Age",
+    "Height",
+    "Weight",
+    "FCVC",
+    "NCP",
+    "CH2O",
+    "FAF",
+    "TUE",
+    "CAEC",
+    "CALC",
+    "Gender",
+    "family_history_with_overweight",
+    "FAVC",
+    "SMOKE",
+    "SCC",
+    "MTRANS"
+  ],
+  "predictive_feature_count": 16,
+  "transformed_feature_count": 25,
+  "target_classes": [
+    "Insufficient_Weight",
+    "Normal_Weight",
+    "Obesity_Type_I",
+    "Obesity_Type_II",
+    "Obesity_Type_III",
+    "Overweight_Level_I",
+    "Overweight_Level_II"
+  ],
+  "target_class_count": 7,
+  "final_test_accuracy": 0.9075144508670521,
+  "final_test_balanced_accuracy": 0.8976420939847197,
+  "final_test_macro_f1": 0.8973281823370796,
+  "final_test_weighted_f1": 0.9072142069759439,
+  "selection_metric": "Macro F1",
+  "validation_metrics": {
+    "Accuracy": 0.9075144508670521,
+    "Balanced Accuracy": 0.8978937333049685,
+    "Macro F1": 0.8977760050085329,
+    "Weighted F1": 0.9070992449361578
+  },
+  "dataset": {
+    "training_samples": 14530,
+    "validation_samples": 3114,
+    "development_samples": 17644,
+    "test_samples": 3114,
+    "raw_features": 16
+  },
+  "reproducibility": {
+    "random_seed": 42,
+    "cross_validation_folds": 5,
+    "tuning_candidates": 20,
+    "scikit_learn_version": "1.8.0"
+  },
+  "scikit_learn_version": "1.8.0"
+}
