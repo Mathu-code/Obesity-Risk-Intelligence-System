@@ -1,0 +1,49 @@
+{
+  "project": "Obesity Risk Intelligence System",
+  "model": "Gradient Boosting - Tuned",
+  "selection_metric": "Macro F1",
+  "best_hyperparameters": {
+    "classifier__subsample": 0.8,
+    "classifier__n_estimators": 100,
+    "classifier__min_samples_split": 5,
+    "classifier__min_samples_leaf": 2,
+    "classifier__max_features": 0.8,
+    "classifier__max_depth": 3,
+    "classifier__learning_rate": 0.15
+  },
+  "validation_metrics": {
+    "Accuracy": 0.9075144508670521,
+    "Balanced Accuracy": 0.8978937333049685,
+    "Macro F1": 0.8977760050085329,
+    "Weighted F1": 0.9070992449361578
+  },
+  "final_test_metrics": {
+    "Accuracy": 0.9075144508670521,
+    "Balanced Accuracy": 0.8976420939847197,
+    "Macro F1": 0.8973281823370796,
+    "Weighted F1": 0.9072142069759439
+  },
+  "dataset": {
+    "training_samples": 14530,
+    "validation_samples": 3114,
+    "development_samples": 17644,
+    "test_samples": 3114,
+    "raw_features": 16,
+    "transformed_features": 25,
+    "classes": [
+      "Insufficient_Weight",
+      "Normal_Weight",
+      "Obesity_Type_I",
+      "Obesity_Type_II",
+      "Obesity_Type_III",
+      "Overweight_Level_I",
+      "Overweight_Level_II"
+    ]
+  },
+  "reproducibility": {
+    "random_seed": 42,
+    "cross_validation_folds": 5,
+    "tuning_candidates": 20,
+    "sklearn_version": "1.8.0"
+  }
+}
