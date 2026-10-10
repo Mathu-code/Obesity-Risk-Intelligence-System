@@ -2,10 +2,6 @@
 
 The **Obesity Risk Intelligence System** is a university group project developed by four members to classify obesity-risk categories using demographic, physical, nutritional, and lifestyle information. It combines a trained machine learning pipeline, a Streamlit interface, Flask backend services, SQLite prediction history, and downloadable PDF assessment reports.
 
-**🌐 Live Demo:** [Obesity Risk Intelligence System](https://sm-obesity-risk-intelligence.streamlit.app/)
-
-> This application is intended for educational and research purposes. Its predictions are not medical diagnoses and should not replace professional healthcare advice.
-
 ## Project Team
 
 This project was developed collaboratively by the following four members:
